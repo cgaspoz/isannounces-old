@@ -94,4 +94,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'isannounces.cfp',
+    'isannounces.mlmgr',
 )
