@@ -11,6 +11,8 @@ class MailingList(models.Model):
     acronym = models.CharField(max_length=20, blank=True)
     topic = models.TextField(blank=True)
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
+    clean_subject = models.CharField(max_length=250)
+    clean_from = models.CharField(max_length=250)
 
     class Meta:
         verbose_name = _('mailing list')
