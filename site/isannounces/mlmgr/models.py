@@ -11,8 +11,8 @@ class MailingList(models.Model):
     acronym = models.CharField(max_length=20, blank=True)
     topic = models.TextField(blank=True)
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
-    clean_subject = models.CharField(max_length=250)
-    clean_from = models.CharField(max_length=250)
+    clean_subject = models.CharField(max_length=250, blank=True)
+    clean_from = models.CharField(max_length=250, blank=True)
 
     class Meta:
         verbose_name = _('mailing list')
@@ -32,7 +32,7 @@ class MailingListMessage(models.Model):
     message = models.TextField(blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     exim_message_id = models.CharField(max_length=250)
-    call = models.ForeignKey(Call)
+    call = models.ForeignKey(Call, blank=True, null=True)
     mailing_list = models.ForeignKey('MailingList')
 
     class Meta:
