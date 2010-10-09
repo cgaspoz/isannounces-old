@@ -227,9 +227,9 @@ class Deadline(models.Model):
 
     def __unicode__(self):
         if self.extension:
-            return self.extension + " - " + self.type + " (" + _("extended") + ")"
+            return "%s - %s (%s)" % (self.extension, self.type, _("extended"))
         else:
-            return self.date + " - " + self.type
+            return "%s - %s" % (self.date, self.type)
 
 class DeadlineType(models.Model):
     """
