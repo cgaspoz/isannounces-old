@@ -14,6 +14,7 @@ class Sponsor(models.Model):
     name = models.CharField(max_length=250)
     acronym = models.CharField(max_length=20, blank=True)
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
+    description = models.TextField(blank=True)
 
     class Meta:
         verbose_name = _('sponsor')
@@ -30,6 +31,7 @@ class Conference(models.Model):
     """
     name = models.CharField(max_length=250)
     acronym = models.CharField(max_length=20, blank=True)
+    description = models.TextField(blank=True)
     topic = models.TextField(blank=True)
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
     sponsor = models.ForeignKey('Sponsor')
@@ -59,6 +61,7 @@ class ConferenceEdition(models.Model):
     city = models.CharField(max_length=250, blank=True)
     country = CountryField()
     parent = models.ForeignKey('self')
+    conference = models.ForeignKey('Conference')
     #TODO Add foreign keys for cities
 
     class Meta:
@@ -78,10 +81,53 @@ class Journal(models.Model):
     title = models.CharField(max_length=250)
     acronym = models.CharField(max_length=20, blank=True)
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
+    description = models.TextField(blank=True)
+    basket = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = _('journal')
         verbose_name_plural = _('journals')
+        ordering = ['title']
+
+    def __unicode__(self):
+        if self.acronym:
+            return self.title + " (" + self.acronym + ")"
+        else:
+            return self.title
+
+# Books
+
+class BookPublisher(models.Model):
+    """
+    A professional or academic publisher.
+    """
+    name = models.CharField(max_length=250)
+    acronym = models.CharField(max_length=20, blank=True)
+    website = models.URLField(verify_exists=True, max_length=200, blank=True)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name = _('publisher')
+        verbose_name_plural = _('publishers')
+        ordering = ['name']
+
+    def __unicode__(self):
+        return self.name
+
+class Book(models.Model):
+    """
+    A book.
+    """
+    title = models.CharField(max_length=250)
+    theme = models.CharField(max_length=500, blank=True)
+    topics = models.TextField(blank=True)
+    website = models.URLField(verify_exists=True, max_length=200, blank=True)
+    description = models.TextField(blank=True)
+    publisher = models.ForeignKey('BookPublisher')
+
+    class Meta:
+        verbose_name = _('book')
+        verbose_name_plural = _('books')
         ordering = ['title']
 
     def __unicode__(self):
@@ -96,6 +142,7 @@ class University(models.Model):
     name = models.CharField(max_length=250)
     acronym = models.CharField(max_length=20, blank=True)
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
+    description = models.TextField(blank=True)
     city = models.CharField(max_length=250, blank=True)
     country = CountryField()
     #TODO Add foreign keys for cities
@@ -116,6 +163,8 @@ class UniversityDivision(models.Model):
     faculty = models.CharField(max_length=250)
     acronym = models.CharField(max_length=20, blank=True)
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
+    description = models.TextField(blank=True)
+    university = models.ForeignKey('University')
 
     class Meta:
         verbose_name = _('division')
