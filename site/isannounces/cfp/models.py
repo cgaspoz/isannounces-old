@@ -34,8 +34,8 @@ class Conference(models.Model):
     description = models.TextField(blank=True)
     topic = models.TextField(blank=True)
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
-    sponsor = models.ForeignKey('Sponsor')
-    parent = models.ForeignKey('self')
+    sponsor = models.ForeignKey('Sponsor', blank=True)
+    parent = models.ForeignKey('self', blank=True)
 
     class Meta:
         verbose_name = _('conference')
@@ -60,7 +60,7 @@ class ConferenceEdition(models.Model):
     location = models.CharField(max_length=250, blank=True)
     city = models.CharField(max_length=250, blank=True)
     country = CountryField()
-    parent = models.ForeignKey('self')
+    parent = models.ForeignKey('self', blank=True)
     conference = models.ForeignKey('Conference')
     #TODO Add foreign keys for cities
 
