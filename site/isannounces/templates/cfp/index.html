@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1>Conferences</h1>
+{% if latest_editions_deadlines_list%}
+{% for deadline in latest_editions_deadlines_list %}
+    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
+{% endfor %}
+{% else %}
+No open calls!
+{% endif %}
+<h1>Journals</h1>
+{% if latest_journals_deadlines_list%}
+{% for deadline in latest_journals_deadlines_list %}
+    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
+{% endfor %}
+{% else %}
+No open calls!
+{% endif %}
+<h1>Books</h1>
+{% if latest_books_deadlines_list%}
+{% for deadline in latest_books_deadlines_list %}
+    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
+{% endfor %}
+{% else %}
+No open calls!
+{% endif %}
+<h1>Positions</h1>
+{% if latest_divisions_deadlines_list%}
+{% for deadline in latest_divisions_deadlines_list %}
+    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
+{% endfor %}
+{% else %}
+No open calls!
+{% endif %}
+</body>
+</html>

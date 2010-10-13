@@ -1,0 +1,13 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+{% for deadline in latest_editions_deadlines_list %}
+    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.content_type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
+{% endfor %}
+
+</body>
+</html>

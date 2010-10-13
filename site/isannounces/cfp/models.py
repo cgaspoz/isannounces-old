@@ -62,6 +62,7 @@ class ConferenceEdition(models.Model):
     country = CountryField()
     parent = models.ForeignKey('self', blank=True, null=True)
     conference = models.ForeignKey('Conference')
+    calls = generic.GenericRelation('Call')
     #TODO Add foreign keys for cities
 
     class Meta:
@@ -83,6 +84,7 @@ class Journal(models.Model):
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
     description = models.TextField(blank=True)
     basket = models.BooleanField(default=False)
+    calls = generic.GenericRelation('Call')
 
     class Meta:
         verbose_name = _('journal')
@@ -124,6 +126,7 @@ class Book(models.Model):
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
     description = models.TextField(blank=True)
     publisher = models.ForeignKey('BookPublisher')
+    calls = generic.GenericRelation('Call')
 
     class Meta:
         verbose_name = _('book')
@@ -165,6 +168,8 @@ class UniversityDivision(models.Model):
     website = models.URLField(verify_exists=True, max_length=200, blank=True)
     description = models.TextField(blank=True)
     university = models.ForeignKey('University')
+    calls = generic.GenericRelation('Call')
+
 
     class Meta:
         verbose_name = _('division')
@@ -227,7 +232,7 @@ class Deadline(models.Model):
 
     def __unicode__(self):
         if self.extension:
-            return "%s - %s (%s)" % (self.extension, self.type, _("extended"))
+            return "%s - %s" % (self.extension, self.type) + " (extended)"
         else:
             return "%s - %s" % (self.date, self.type)
 
