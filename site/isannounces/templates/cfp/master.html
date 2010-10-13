@@ -1,31 +1,35 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
+{#% load i18n %#}
+{#% load localeurl_tags %#}
+{#% load stages_extras %#}
+{#% get_current_language as LANGUAGE_CODE %#}
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <title>{% block title %}ISannounces{% endblock %}</title>
-    <link href="http://isannounces.org/medias/css/bundle_common.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="http://isannounces.org/medias/css/bundle_github.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="{{ media_url }}css/bundle_common.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="{{ media_url }}css/bundle_github.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="#" rel="alternate" title="New calls feed" type="application/atom+xml" />
     <meta name="description" content="Sharing conferences, journals and positions announces in MIS." />
   </head>
   <body class="logged_out ">
     <div class="subnavd" id="main">
       <div id="header" class="true">
-          <a class="logo boring" href="http://isannounces.org">
-            <img src="http://isannounces.org/medias/logos/isannounces.png" class="default" alt="ISannounces" />
+          <a class="logo boring" href="{% url isannounces.views.index %}">
+            <img src="{{ media_url }}logos/isannounces.png" class="default" alt="ISannounces" />
             <![if !IE]>
-            <img src="http://isannounces.org/medias/logos/isannounces-hover.png" class="hover" alt="ISannounces" />
+            <img src="{{ media_url }}logos/isannounces-hover.png" class="hover" alt="ISannounces" />
             <![endif]>
           </a>
           <div class="topsearch">
             <ul class="nav logged_out">
-              <li><a href="http://isannounces.org">Home</a></li>
+              <li><a href="{% url isannounces.views.index %}">Home</a></li>
               <li><a href="#">Menu 1</a></li>
               <li><a href="#">Menu 2</a></li>
               <li><a href="#">Menu 3</a></li>
               <li><a href="#">Menu 4</a></li>
-              <li><a href="/admin">Login</a></li>
+              <li><a href="{% url admin:index %}">Admin</a></li>
             </ul>
           </div>
       </div>
@@ -104,13 +108,13 @@
                     <th>col3</th>
                 </tr>
                 <tr class="alt">
-                    <td class="icon"><img alt="file" src="http://isannounces.org/medias/icons/txt.png" /></td>
+                    <td class="icon"><img alt="file" src="{{ media_url }}icons/txt.png" /></td>
                     <td class="content"><a href="#">content1</a></td>
                     <td class="age">date1</td>
                     <td class="message">message1</td>
                 </tr>
                 <tr class="">
-                    <td class="icon"><img alt="file" src="http://isannounces.org/medias/icons/txt.png" /></td>
+                    <td class="icon"><img alt="file" src="{{ media_url }}icons/txt.png" /></td>
                     <td class="content"><a href="#">content2</a></td>
                     <td class="age">date2</td>
                     <td class="message">message2</td>
@@ -138,7 +142,7 @@
       <div class="site">
         <div class="sponsor">
           <a href="#" class="logo">
-            <img alt="Great sponsor" src="http://isannounces.org/medias/cfp/images/GPLv3.png" />
+            <img alt="Great sponsor" src="{{ media_url }}cfp/images/GPLv3.png" />
           </a>
           Proudly supported by myself, some others<br />
           and the community! Great! isn't it?
