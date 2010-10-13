@@ -1,41 +1,142 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<h1>Conferences</h1>
-{% if latest_editions_deadlines_list%}
-{% for deadline in latest_editions_deadlines_list %}
-    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
-{% endfor %}
-{% else %}
-No open calls!
-{% endif %}
-<h1>Journals</h1>
-{% if latest_journals_deadlines_list%}
-{% for deadline in latest_journals_deadlines_list %}
-    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
-{% endfor %}
-{% else %}
-No open calls!
-{% endif %}
-<h1>Books</h1>
-{% if latest_books_deadlines_list%}
-{% for deadline in latest_books_deadlines_list %}
-    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
-{% endfor %}
-{% else %}
-No open calls!
-{% endif %}
-<h1>Positions</h1>
-{% if latest_divisions_deadlines_list%}
-{% for deadline in latest_divisions_deadlines_list %}
-    {{ deadline.date }} - {{ deadline.type }} - {{ deadline.call.type }} - {{ deadline.call.content_object }}<br />
-{% endfor %}
-{% else %}
-No open calls!
-{% endif %}
-</body>
-</html>
+{% extends "cfp/master.html" %}
+
+{% block title %}ISannounces{% endblock %}
+
+{%  block site %}
+        {# conferences #}
+        <div id="path">
+            <b><a href="#">conferences</a></b>
+        </div>
+        {% if latest_editions_deadlines_list%}
+        <div id="browser">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>date</th>
+                    <th>type</th>
+                    <th>call type</th>
+                    <th>call content_object</th>
+                </tr>
+                {% for deadline in latest_editions_deadlines_list %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ deadline.date }}</td>
+                    <td>{{ deadline.type }}</td>
+                    <td>{{ deadline.call.type }}</td>
+                    <td>{{ deadline.call.content_object }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <div id="commit">
+            <div class="group">
+                <div class="envelope commit">
+                    <div class="human">
+                        <div class="message"><p>No open calls!</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {# journals #}
+        <div id="path">
+            <b><a href="#">journals</a></b>
+        </div>
+        {% if latest_journals_deadlines_list%}
+        <div id="browser">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>date</th>
+                    <th>type</th>
+                    <th>call type</th>
+                    <th>call content_object</th>
+                </tr>
+                {% for deadline in latest_journals_deadlines_list %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ deadline.date }}</td>
+                    <td>{{ deadline.type }}</td>
+                    <td>{{ deadline.call.type }}</td>
+                    <td>{{ deadline.call.content_object }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <div id="commit">
+            <div class="group">
+                <div class="envelope commit">
+                    <div class="human">
+                        <div class="message"><p>No open calls!</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {# books #}
+        <div id="path">
+            <b><a href="#">books</a></b>
+        </div>
+        {% if latest_books_deadlines_list%}
+        <div id="browser">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>date</th>
+                    <th>type</th>
+                    <th>call type</th>
+                    <th>call content_object</th>
+                </tr>
+                {% for deadline in latest_books_deadlines_list %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ deadline.date }}</td>
+                    <td>{{ deadline.type }}</td>
+                    <td>{{ deadline.call.type }}</td>
+                    <td>{{ deadline.call.content_object }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <div id="commit">
+            <div class="group">
+                <div class="envelope commit">
+                    <div class="human">
+                        <div class="message"><p>No open calls!</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {# books #}
+        <div id="path">
+            <b><a href="#">positions</a></b>
+        </div>
+        {% if latest_divisions_deadlines_list%}
+        <div id="browser">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>date</th>
+                    <th>type</th>
+                    <th>call type</th>
+                    <th>call content_object</th>
+                </tr>
+                {% for deadline in latest_divisions_deadlines_list %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ deadline.date }}</td>
+                    <td>{{ deadline.type }}</td>
+                    <td>{{ deadline.call.type }}</td>
+                    <td>{{ deadline.call.content_object }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <div id="commit">
+            <div class="group">
+                <div class="envelope commit">
+                    <div class="human">
+                        <div class="message"><p>No open calls!</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+{%  endblock site %}
